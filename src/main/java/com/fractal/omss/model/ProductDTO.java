@@ -13,16 +13,16 @@ public class ProductDTO {
     public static final String SEQUENCE_NAME = "product_sequence";
 	
 	@Id
-	private long _id;
+	private String _id;
 	private String name;
 	private String category;
 	private String status;
 	private double price;
 	
-	public long get_id() {
+	public String get_id() {
 		return _id;
 	}
-	public void set_id(long id) {
+	public void set_id(String id) {
 		this._id = id;
 	}
 	public String getName() {

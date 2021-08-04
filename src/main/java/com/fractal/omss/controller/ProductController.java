@@ -32,7 +32,7 @@ public class ProductController {
 	
 	@PostMapping("/add")
 	public ProductDTO create(@Validated @RequestBody ProductDTO product){	
-		product.set_id(sequenceGenerator.generateSequence("product_sequence"));
+		product.set_id(String.valueOf(sequenceGenerator.generateSequence("product_sequence")));
 		return productDAO.insert(product);
 	}
 	
@@ -48,6 +48,7 @@ public class ProductController {
 	
 	@PutMapping("/update/{id}")
 	public ProductDTO update(@PathVariable String id, @Validated @RequestBody ProductDTO product) {
+		product.set_id(id);
 		return productDAO.save(product);
 	}
 	
