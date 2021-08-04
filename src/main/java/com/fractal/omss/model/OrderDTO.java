@@ -1,33 +1,34 @@
 package com.fractal.omss.model;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="products")
+@Document(collection="orders")
 public class OrderDTO {
 	@Transient
     public static final String SEQUENCE_NAME = "order_sequence";
 	
 	@Id
-	private long _id;
+	private String _id;
 	private String status;
-	private String date;
-	private String customer;
+	private Date date;
+	private String consumer;
 	private double city_tax;
 	private double country_tax;
 	private double state_tax;
 	private double federal_tax;
 	private double total_taxes;
 	private double total_amount;
-	private List<ItemOrder> items;
+	private List<OrderItem> items;
 	
-	public long get_id() {
+	public String get_id() {
 		return _id;
 	}
-	public void set_id(long _id) {
+	public void set_id(String _id) {
 		this._id = _id;
 	}
 	public String getStatus() {
@@ -36,17 +37,17 @@ public class OrderDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getCustomer() {
-		return customer;
+	public String getconsumer() {
+		return consumer;
 	}
-	public void setCustomer(String customer) {
-		this.customer = customer;
+	public void setconsumer(String consumer) {
+		this.consumer = consumer;
 	}
 	public double getCity_tax() {
 		return city_tax;
@@ -84,10 +85,10 @@ public class OrderDTO {
 	public void setTotal_amount(double total_amount) {
 		this.total_amount = total_amount;
 	}
-	public List<ItemOrder> getItems() {
+	public List<OrderItem> getItems() {
 		return items;
 	}
-	public void setItems(List<ItemOrder> items) {
+	public void setItems(List<OrderItem> items) {
 		this.items = items;
 	}
 	public static String getSequenceName() {

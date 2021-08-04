@@ -30,7 +30,7 @@ public class OrderController {
 	
 	@PostMapping("/add")
 	public OrderDTO create(@Validated @RequestBody OrderDTO product){	
-		product.set_id(sequenceGenerator.generateSequence("product_sequence"));
+		product.set_id(String.valueOf(sequenceGenerator.generateSequence("order_sequence")));
 		return orderDAO.insert(product);
 	}
 	
