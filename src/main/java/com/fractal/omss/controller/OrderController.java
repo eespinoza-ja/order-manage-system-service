@@ -1,4 +1,6 @@
 package com.fractal.omss.controller;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fractal.omss.model.OrderDTO;
 import com.fractal.omss.repository.IOrderDAO;
 import com.fractal.omss.service.ISequenceGeneratorService;
+import com.fractal.omss.service.ITaxesOrder;
 
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.PUT})
@@ -28,10 +31,16 @@ public class OrderController {
 	@Autowired
 	private ISequenceGeneratorService sequenceGenerator;
 	
+	@Autowired
+	private ITaxesOrder taxesOrder;
+	
 	@PostMapping("/add")
-	public OrderDTO create(@Validated @RequestBody OrderDTO product){	
-		product.set_id(String.valueOf(sequenceGenerator.generateSequence("order_sequence")));
-		return orderDAO.insert(product);
+	public OrderDTO create(@Validated @RequestBody OrderDTO order){	
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+		order.set_id(String.valueOf(sequenceGenerator.generateSequence("order_sequence")));
+		order.setDate(formatter.format(new Date()));
+		order = taxesOrder.computeTaxesOrder(order);
+		return orderDAO.insert(order);
 	}
 	
 	@GetMapping("/all")

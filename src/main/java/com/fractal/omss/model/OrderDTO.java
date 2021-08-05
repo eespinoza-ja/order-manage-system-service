@@ -1,6 +1,5 @@
 package com.fractal.omss.model;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -15,10 +14,10 @@ public class OrderDTO {
 	@Id
 	private String _id;
 	private String status;
-	private Date date;
+	private String date;
 	private String consumer;
 	private double city_tax;
-	private double country_tax;
+	private double county_tax;
 	private double state_tax;
 	private double federal_tax;
 	private double total_taxes;
@@ -37,10 +36,10 @@ public class OrderDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public String getconsumer() {
@@ -55,11 +54,11 @@ public class OrderDTO {
 	public void setCity_tax(double city_tax) {
 		this.city_tax = city_tax;
 	}
-	public double getCountry_tax() {
-		return country_tax;
+	public double getCounty_tax() {
+		return county_tax;
 	}
-	public void setCountry_tax(double country_tax) {
-		this.country_tax = country_tax;
+	public void setCounty_tax(double county_tax) {
+		this.county_tax = county_tax;
 	}
 	public double getState_tax() {
 		return state_tax;
